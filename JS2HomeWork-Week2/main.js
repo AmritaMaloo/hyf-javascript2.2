@@ -22,13 +22,24 @@ function dataOnClick () {
         const ul = document.querySelector(".hyfdata");
         for(let i = 0; i < data.length; i++) {
             let li = document.createElement("li");
-            li.appendChild(document.createTextNode(data[i].name));
+            // Step 6 Make all the repositories link their own page in Github.
+            let htmlurl = "https://api.github.com/repos/HackYourFuture/" + data[i].name;
+            let a = document.createElement("a");
+            a.setAttribute("href", htmlurl);
+            a.setAttribute("target", "_blank");
+            a.appendChild(document.createTextNode(htmlurl));
+            li.appendChild(a);
             ul.appendChild(li);
+                       
         }
+              
+        
 
     });
 }
 // Step 5 When you click the button -> get the data from the Github API and display it on your website
 document.querySelector("button").addEventListener('click', dataOnClick);
+
+
 
 
