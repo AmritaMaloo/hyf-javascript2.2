@@ -40,6 +40,39 @@ function dataOnClick () {
 // Step 5 When you click the button -> get the data from the Github API and display it on your website
 document.querySelector("button").addEventListener('click', dataOnClick);
 
+// Step 1.1 You must write a function that takes 4 arguments.
+
+function threeFive(startVal, endVal, threeCallback, fiveCallback) {
+
+    const array = [];
+    for(let i = startVal, j = 0; i <= endVal; i++,j++) {
+        array[j] = i;
+    }
+    console.log(array);
+    for(let k = 0; k < array.length;) {
+        if(array[k] % 3 == 0 && array[k] % 5 == 0)
+        {
+            setTimeout(threeCallback, 1000);
+            setTimeout(fiveCallback, 1000);
+            k++;
+
+        } else if(array[k] % 3 == 0) {
+            threeCallback();
+            k++;
+        }
+        else if(array[k] % 5 == 0) {
+            fiveCallback();
+            k++;
+        }
+           
+        else k++;
+        
+    }
+
+}
+
+threeFive(10, 15, function () {console.log("sayThree");}, function () {console.log("sayFive");});
+
 
 
 
