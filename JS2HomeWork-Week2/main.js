@@ -16,5 +16,14 @@ function fetchJSONData(url, callbackFn) {
     xhr.send();
 }
 fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(data) {
-   console.log(data); 
+    console.log(data); 
+    // Step 4 Display the data that you get from the Github API on your web page
+    const ul = document.querySelector(".hyfdata");
+    for(let i = 0; i < data.length; i++) {
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(data[i].name));
+        ul.appendChild(li);
+    }
+
 });
+
