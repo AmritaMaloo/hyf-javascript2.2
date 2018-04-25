@@ -49,29 +49,86 @@ function threeFive(startVal, endVal, threeCallback, fiveCallback) {
         array[j] = i;
     }
     console.log(array);
-    for(let k = 0; k < array.length;) {
-        if(array[k] % 3 == 0 && array[k] % 5 == 0)
-        {
-            setTimeout(threeCallback, 1000);
-            setTimeout(fiveCallback, 1000);
-            k++;
-
-        } else if(array[k] % 3 == 0) {
-            threeCallback();
-            k++;
-        }
-        else if(array[k] % 5 == 0) {
-            fiveCallback();
-            k++;
-        }
-           
-        else k++;
+    for(let k = 0; k < array.length;k++) {
+        threeCallback(array[k]);         
+        fiveCallback(array[k]);
+            
+    }      
         
-    }
 
 }
 
-threeFive(10, 15, function () {console.log("sayThree");}, function () {console.log("sayFive");});
+threeFive(10, 15, function (item) {
+    if (item % 3 === 0) 
+    console.log(item, "divisible by Three");
+    }, 
+    function (item) {
+        if (item % 5 === 0) 
+        console.log(item, "divisible by Five");
+    });
+
+// Step 1.2 Please solve this problem using: https://www.freecodecamp.com/challenges/repeat-a-string-repeat-a-string
+
+function repeatStringNumTimes(str, num, forCall, whileCall, doWhileCall) {
+    
+    let strRepeat = " ";
+    if(num <= 0) {
+      return " ";
+      
+    } else 
+        forCall(str, num, strRepeat);
+        whileCall(str, num, strRepeat);
+        doWhileCall(str, num, strRepeat);
+    
+
+  }
+  
+  setTimeout(repeatStringNumTimes.bind(null, "abc", 3, function (str, num, strRepeat) { 
+      // Step 1.3 A for Loop
+    for(let i = 1; i <= num; i++) {
+      
+        strRepeat += str;
+   
+    } 
+    console.log('repeat string abc 3 times using for ', strRepeat);},
+    
+
+    function (str, num, strRepeat) { 
+        let i = 1;
+        // Step 1.4 A while Loop
+        while (i <= num) {
+            strRepeat += str;
+            i++;
+        }
+        console.log('repeat string abc 3 times using while ', strRepeat);
+   }, 
+    function (str, num, strRepeat) {
+       let i = 1;
+       // Step 1.5 A DO Loop
+       do { strRepeat += str; i++} while (i <=num);
+       console.log('repeat string abc 3 times using DOwhile ', strRepeat);
+   }),1000);
+// step 9 Here are two functions that look like they do the something similar but they print different results. Please explain what's going on here.
+var x = 9; 
+function f1(val) { 
+    val = val+1; 
+    return val;
+} 
+//call by value
+f1(x);
+console.log('CALL BY VALUE: Here only the value of x was passed when the function f1(x) was called, and whatever calculation was done in another variable "val" and when we return the variable "val" it is stored at some other location not where the x was stored. so if we want to log the value of x it will display the same value of x that is: ', x);
+
+var y = { x: 9 };
+function f2(val) {
+    val.x = val.x + 1;
+    return val;
+}
+//call by reference
+f2(y);
+console.log('CALL BY REFERENCE: Here we are passing the object y when the function f2(y) is called. y holds the value/address where x is stored and calculation is done at the same address because we are using val.x , so when y is logged it will store the new value of x', y );
+
+
+
 
 
 
