@@ -1,0 +1,66 @@
+
+* {
+    box-sizing: border-box;
+  }
+    .step1_6 {
+        padding: 10px;
+        background: lightgrey;
+        float: left;
+        clear:both;
+        border: outset;
+        font-size: 12px;
+        width: 10%;
+
+    }
+  
+  /* Style the search field */
+    input[type=text] {
+    
+    padding: 10px;
+    font-size: 12px;
+    border: outset;
+    border-right: none;
+    float: right;
+    width: 50%;
+    background: #f1f1f1;
+    clear: both;
+  }
+  
+  /* Style the submit button */
+    .tosubmit {
+    
+    padding: 10px;
+    float: right;
+    width: 10%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 12px;
+    border: outset;
+    
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    clear: both;
+    
+  }
+  div.search {
+    display: flex;
+    flex-direction: row;
+    margin-left: 500px;
+    
+  }
+  .bartop {
+    background: skyblue;
+
+
+  }
+  
+  .tosubmit:hover {
+    background: #0b7dda;
+  }
+  
+  p {
+    margin-left: 500px;
+  }
+  
+  

@@ -4,7 +4,7 @@ console.log("script " + document.querySelector("script").src +  " has been loade
 // Step 2 Add a button (e.g. 'click me') that when clicked console.logs 'you clicked me!
 document.querySelector("button").addEventListener('click', ()  =>  console.log('you clicked me!!'));
 
-function dataOnClick () {
+
     // Step 3 Create a function that fetches from The Github API
     function fetchJSONData(url, callbackFn) {
         const xhr = new XMLHttpRequest();
@@ -16,6 +16,10 @@ function dataOnClick () {
         xhr.open('GET', url);
         xhr.send();
     }
+    function dataOnClick () {
+        this.disabled = true;
+        document.querySelector('p').innerHTML = "";
+        document.querySelector('.repolinks').innerHTML = "";
     fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(data) {
         console.log(data); 
         // Step 4 Display the data that you get from the Github API on your web page
@@ -38,7 +42,33 @@ function dataOnClick () {
     });
 }
 // Step 5 When you click the button -> get the data from the Github API and display it on your website
-document.querySelector("button").addEventListener('click', dataOnClick);
+document.querySelector(".step1_6").addEventListener('click', dataOnClick);
+// Step 7
+document.querySelector(".tosubmit").addEventListener('click', getData);
+function getData() {
+    document.querySelector(".step1_6").disabled = false;
+    document.querySelector(".hyfdata").innerHTML = "";
+    const input = document.querySelector('input');
+    const url = "https://api.github.com/search/repositories?q=user:HackYourFuture+" + (input.value);
+    
+    fetchJSONData(url, function(data) {
+        
+        document.querySelector('p').innerHTML = "";
+        document.querySelector('.repolinks').innerHTML = "";
+
+        if(data.total_count === 0 || input.value === "")
+            document.querySelector('p').innerHTML = "please enter some valid data";
+        else {
+            for(let i = 0; i < data.total_count; i++) {
+            document.querySelector('.repolinks').innerHTML += `<li><a href="${data.items[i].html_url}">${data.items[i].html_url}</a></li>`
+            
+            }
+        }
+
+    input.value = "" ;     
+    });
+
+}
 
 // Step 1.1 You must write a function that takes 4 arguments.
 
@@ -108,7 +138,7 @@ function repeatStringNumTimes(str, num, forCall, whileCall, doWhileCall) {
        do { strRepeat += str; i++} while (i <=num);
        console.log('repeat string abc 3 times using DOwhile ', strRepeat);
    }),1000);
-// step 9 Here are two functions that look like they do the something similar but they print different results. Please explain what's going on here.
+// step 1.9 Here are two functions that look like they do the something similar but they print different results. Please explain what's going on here.
 var x = 9; 
 function f1(val) { 
     val = val+1; 
