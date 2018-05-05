@@ -20,7 +20,7 @@ document.querySelector("button").addEventListener('click', ()  =>  console.log('
         this.disabled = true;
         document.querySelector('p').innerHTML = "";
         document.querySelector('.repolinks').innerHTML = "";
-    fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(data) {
+        fetchJSONData('https://api.github.com/orgs/HackYourFuture/repos', function(data) {
         console.log(data); 
         // Step 4 Display the data that you get from the Github API on your web page
         const ul = document.querySelector(".hyfdata");
@@ -80,7 +80,9 @@ function threeFive(startVal, endVal, threeCallback, fiveCallback) {
     }
     console.log(array);
     for(let k = 0; k < array.length;k++) {
-        threeCallback(array[k]);         
+        if (array[k] % 3 === 0) 
+        threeCallback(array[k]);    
+        if (array[k] % 5 === 0)      
         fiveCallback(array[k]);
             
     }      
@@ -89,11 +91,11 @@ function threeFive(startVal, endVal, threeCallback, fiveCallback) {
 }
 
 threeFive(10, 15, function (item) {
-    if (item % 3 === 0) 
+    
     console.log(item, "divisible by Three");
     }, 
     function (item) {
-        if (item % 5 === 0) 
+        
         console.log(item, "divisible by Five");
     });
 
@@ -139,7 +141,7 @@ function repeatStringNumTimes(str, num, forCall, whileCall, doWhileCall) {
        console.log('repeat string abc 3 times using DOwhile ', strRepeat);
    }),1000);
 // step 1.9 Here are two functions that look like they do the something similar but they print different results. Please explain what's going on here.
-var x = 9; 
+let x = 9; 
 function f1(val) { 
     val = val+1; 
     return val;
